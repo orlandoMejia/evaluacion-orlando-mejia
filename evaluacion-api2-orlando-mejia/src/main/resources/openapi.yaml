@@ -19,32 +19,24 @@ servers:
     url: https://virtserver.swaggerhub.com/ORLANDOMEJIA_1/BPContractProjects/1.0.0
   - url: https://projectstore3.swagger.io/api/v3
 tags:
-  - name: Authentication
+  - name: SaveData
     description: Everything about your project
     externalDocs:
       description: Find out more
       url: http://swagger.io
 paths:
-  /auth/log-in/{user}{password}:
+  /save/data:
     post:
       tags:
-        - Authentication
+        - SaveData
       summary: Finds Repo by name
       description: Get Repo by name
       operationId: GetProjectByName
-      parameters:
-        - name: user
-          in: path
-          description: Name values that need to be considered for filter
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: path
-          description: Name values that need to be considered for filter
-          required: true
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceRegistrationInfo'
       responses:
         "200":
           description: Successful operation
@@ -64,3 +56,25 @@ components:
           type: string
         state:
           type: string
+    DeviceRegistrationInfo:
+      type: object
+      properties:
+        token:
+          type: string
+          format: uri
+          example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+        estructuraJson:
+          type: object
+          properties:
+            campo1:
+              type: string
+              format: uri
+              example: 'valor1'
+            campo2:
+              type: string
+              format: uuid
+              example: 'valor1'
+            campo3:
+              type: string
+              format: uuid
+              example: 'valor1'
