@@ -1,0 +1,27 @@
+logging:
+  level:
+    root: INFO
+    "[com.pichincha.metrics]": INFO
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS RAW
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    properties:
+      hibernet:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      schema-locations: classpath:script.sql
+
+server:
+  servlet:
+    context-path: "/evaluacion-api1-orlando-mejia"

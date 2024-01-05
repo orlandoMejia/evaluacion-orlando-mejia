@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: MSA - Naming validations
+  description: |-
+    POC - Validation of naming in Microservices
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/ORLANDOMEJIA_1/BPContractProjects/1.0.0
+  - url: https://projectstore3.swagger.io/api/v3
+tags:
+  - name: project
+    description: Everything about your project
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /repository/projects:
+    get:
+      tags:
+        - projectContract
+      summary: Finds All Repos
+      description: Get All Repos
+      operationId: GetProjects
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectDTO"
+        "405":
+          description: Invalid input
+
+  /repository/project-name/{repoName}:
+    get:
+      tags:
+        - projectContract
+      summary: Finds Repo by name
+      description: Get Repo by name
+      operationId: GetProjectByName
+      parameters:
+        - name: repoName
+          in: path
+          description: Name values that need to be considered for filter
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectDTO"
+        "405":
+          description: Invalid input
+
+  /repository/tribe/{tribuId}:
+    get:
+      tags:
+        - projectContract
+      summary: Finds Repo by tribuId
+      description: Get Repo by tribuId
+      operationId: GetProjectByTribuId
+      parameters:
+        - name: tribuId
+          in: path
+          description: Name values that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectDTO"
+        "405":
+          description: Invalid input
+
+  /repository/cell/{celulaId}:
+    get:
+      tags:
+        - projectContract
+      summary: Finds Repo by celulaId
+      description: Get Repo by celulaId
+      operationId: GetProjectByCelulaId
+      parameters:
+        - name: celulaId
+          in: path
+          description: Name values that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectDTO"
+        "405":
+          description: Invalid input
+
+components:
+  schemas:
+    ProjectDTO:
+      properties:
+        idProject:
+          type: integer
+        idCelula:
+          type: integer
+        celulaNameProduct:
+          type: string
+        celulaNameSquad:
+          type: string
+        idTribu:
+          type: integer
+        tribuName:
+          type: string
+        key:
+          type: string
+        repositoryName:
+          type: string
+        code:
+          type: string
+        prefix:
+          type: string
+        state:
+          type: string
